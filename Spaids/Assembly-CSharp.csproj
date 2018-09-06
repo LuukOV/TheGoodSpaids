@@ -53,16 +53,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DeactivateOnStart.cs" />
-     <Compile Include="Assets\DeliveryPointManager.cs" />
-     <Compile Include="Assets\DeliveryScript.cs" />
-     <Compile Include="Assets\EnemyScript.cs" />
-     <Compile Include="Assets\PatrolScript.cs" />
      <Compile Include="Assets\Script\BulletScript.cs" />
+     <Compile Include="Assets\Script\DeactivateOnStart.cs" />
      <Compile Include="Assets\Script\DeliveryBox.cs" />
+     <Compile Include="Assets\Script\DeliveryPointManager.cs" />
+     <Compile Include="Assets\Script\DeliveryScript.cs" />
+     <Compile Include="Assets\Script\EnemyScript.cs" />
      <Compile Include="Assets\Script\InventoryScript.cs" />
+     <Compile Include="Assets\Script\PatrolScript.cs" />
      <Compile Include="Assets\Script\SelfDestructScript.cs" />
      <Compile Include="Assets\Script\ShootingScript.cs" />
+     <Compile Include="Assets\Script\UIManager.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -100,16 +101,16 @@
      <None Include="Assets\Third Party\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Third Party\Standard Assets\Vehicles\Car\CarGuidelines.txt" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/stack/Saxion/Q2.1/Client call/Prototype/Spaids/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>D:/stack/Saxion/Q2.1/Client call/Development/Spaids/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/stack/Saxion/Q2.1/Client call/Prototype/Spaids/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/stack/Saxion/Q2.1/Client call/Development/Spaids/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/stack/Saxion/Q2.1/Client call/Prototype/Spaids/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/stack/Saxion/Q2.1/Client call/Development/Spaids/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/stack/Saxion/Q2.1/Client call/Prototype/Spaids/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/stack/Saxion/Q2.1/Client call/Development/Spaids/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

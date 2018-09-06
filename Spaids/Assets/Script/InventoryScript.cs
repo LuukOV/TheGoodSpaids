@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject UIManager;
+    private UIManager _UIManagerScript;
+
     private List<DeliveryBox> _objectiveBoxes = new List<DeliveryBox>();
     private List<DeliveryBox> _socialBoxes = new List<DeliveryBox>();
     private List<DeliveryBox> _killerBoxes = new List<DeliveryBox>();
@@ -13,6 +17,7 @@ public class InventoryScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Invoke("CreateObjective", 0.1f);
+        _UIManagerScript = UIManager.GetComponent<UIManager>();
 	}
 	
     void CreateObjective()
@@ -25,7 +30,10 @@ public class InventoryScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+        Debug.Log(_objectiveBoxes.Count);
+        _UIManagerScript.SetObjectiveCount(_objectiveBoxes.Count);
+        _UIManagerScript.SetSocialCount(_socialBoxes.Count);
+        _UIManagerScript.SetKillerCount(_killerBoxes.Count);
 	}
 
     int collectedBoxes()
