@@ -30,7 +30,6 @@ public class InventoryScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(_objectiveBoxes.Count);
         _UIManagerScript.SetObjectiveCount(_objectiveBoxes.Count);
         _UIManagerScript.SetSocialCount(_socialBoxes.Count);
         _UIManagerScript.SetKillerCount(_killerBoxes.Count);
@@ -66,27 +65,31 @@ public class InventoryScript : MonoBehaviour {
     {
         for(int i = _objectiveBoxes.Count - 1; i > -1; i--)
         {
-            ValidatePoint(_objectiveBoxes[i], deliveryPoint);
+            if (ValidatePoint(_objectiveBoxes[i], deliveryPoint))
+                _objectiveBoxes.Remove(_objectiveBoxes[i]);
         }
 
         for (int i = _killerBoxes.Count - 1; i > -1; i--)
         {
-            ValidatePoint(_killerBoxes[i], deliveryPoint);
+            if(ValidatePoint(_killerBoxes[i], deliveryPoint))
+                _killerBoxes.Remove(_killerBoxes[i]);
         }
 
         for (int i = _socialBoxes.Count - 1; i > -1; i--)
         {
-            ValidatePoint(_socialBoxes[i], deliveryPoint);
+            if(ValidatePoint(_socialBoxes[i], deliveryPoint))
+                _socialBoxes.Remove(_socialBoxes[i]);
         }
     }
 
-    void ValidatePoint(DeliveryBox box, GameObject pointLocation)
+    bool ValidatePoint(DeliveryBox box, GameObject pointLocation)
     {
         if (box.DeliveryPoint == pointLocation)
         {
-            _objectiveBoxes.Remove(box);
             pointLocation.SetActive(false);
             // points etc
+            return true;
         }
+        return false;
     }
 }

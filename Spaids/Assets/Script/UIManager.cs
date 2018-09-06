@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         GameTime -= Time.deltaTime;
-        Debug.Log(GameTime);
         TimeCount.text = "> " + (int)GameTime;
 	}
 
