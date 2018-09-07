@@ -5,6 +5,8 @@ using UnityEngine;
 public class DrivingScript : MonoBehaviour {
 
     [SerializeField]
+    float _globalAmplifier = 10f;
+    [SerializeField]
     float _speed = 0.5f;
     [SerializeField]
     float _rotationSpeed = 3f;
@@ -34,44 +36,19 @@ public class DrivingScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.W))
-        {
-            _velocity += _speed;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            if (_velocity > 0)
-            {
-                _velocity -= _breakSpeed;
-            }
-            else
-            {
-                _velocity -= _backwardsSpeed;
-            }
-
-        }
-        else if(_velocity > 0)
-        {
-            _velocity -= _speed * _decelerationMagnitude;
-        }
-        else if(_velocity < 0)
-        {
-            _velocity *= _speed * _decelerationMagnitude;
-        }
+        checkVelocity();
 
         if (/*Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)*/_velocity != 0)
         {
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetAxis("Horizontal") < 0)
             {
-                _rotationVelocity -= _rotationSpeed * _velocity;
+                _rotationVelocity -= _rotationSpeed * Mathf.Abs(_velocity);
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetAxis("Horizontal") > 0)
             {
-                _rotationVelocity += _rotationSpeed * _velocity;
+                _rotationVelocity += _rotationSpeed * Mathf.Abs(_velocity);
             }
-            _rotationVelocity = Mathf.Clamp(_rotationVelocity, -_maxRotationSpeed, _maxRotationSpeed);
-            Debug.Log(_rotationVelocity);
         }
 
         if (_velocity != 0)
@@ -104,9 +81,9 @@ public class DrivingScript : MonoBehaviour {
         }
 
 
-        _rotationVelocity = Mathf.Clamp(_rotationVelocity, -1f, 1f);
+        _rotationVelocity = Mathf.Clamp(_rotationVelocity, -_maxRotationSpeed, _maxRotationSpeed);
 
-        transform.Rotate(new Vector3(0, _rotationVelocity, 0));
+        transform.Rotate(new Vector3(0, _rotationVelocity * (Time.deltaTime * _globalAmplifier), 0));
 
 
         if (_velocity > _maxSpeed)
@@ -118,8 +95,69 @@ public class DrivingScript : MonoBehaviour {
             _velocity = _maxBackwardsSpeed;
         }
 
-        transform.position += transform.forward * _velocity;
+        transform.position += (transform.forward * _velocity) * (Time.deltaTime * _globalAmplifier);
+    }
 
+    void checkVelocity()
+    {
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            if (Input.GetAxis("Vertical") > 0) //only check triggers if controller is connectected
+            {
+                _velocity += _speed;
+            }
+            else if (Input.GetAxis("Vertical") < 0) //here too
+            {
+                if (_velocity > 0)
+                {
+                    _velocity -= _breakSpeed;
+                }
+                else
+                {
+                    _velocity -= _backwardsSpeed;
+                }
 
+            }
+            else
+            {
+                decreaseSpeed();
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("RT_TRIGGER") != 0) //only check triggers if controller is connectected
+            {
+                _velocity += _speed * Input.GetAxis("RT_TRIGGER");
+            }
+            else if (Input.GetAxis("LT_TRIGGER") != 0) //here too
+            {
+                if (_velocity > 0)
+                {
+                    _velocity -= _breakSpeed * Input.GetAxis("LT_TRIGGER"); 
+                }
+                else
+                {
+                    _velocity -= _backwardsSpeed * Input.GetAxis("LT_TRIGGER");
+                }
+
+            }
+            else
+            {
+                decreaseSpeed();
+            }
+        }
+
+    }
+
+    void decreaseSpeed()
+    {
+        if (_velocity > 0)
+        {
+            _velocity -= _speed * _decelerationMagnitude;
+        }
+        else if (_velocity < 0)
+        {
+            _velocity *= _speed * _decelerationMagnitude;
+        }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PatrolScript : MonoBehaviour {
 
     public List<Vector3> _patrolPath = new List<Vector3>();
+    [SerializeField]
+    private float _globalSpeed = 50f;
     private int _target = 0;
     Vector3 _velocity;
 
@@ -38,7 +40,7 @@ public class PatrolScript : MonoBehaviour {
 
         _velocity = (_patrolPath[_target] - transform.position).normalized * _speed;
         _velocity.y = 0;
-        transform.position += _velocity;
+        transform.position += _velocity * (Time.deltaTime * _globalSpeed);
         transform.LookAt(_patrolPath[_target]);
 
 	}
