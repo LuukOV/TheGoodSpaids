@@ -9,6 +9,7 @@ public class ShootingScript : MonoBehaviour {
 
     [SerializeField]
     private float _bulletSpeed = 1000f;
+    private Vector3 _offsetY = new Vector3(0, 1, 0);
 
     private DrivingScript _drivingScript;
 
@@ -21,7 +22,8 @@ public class ShootingScript : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Fire1"))
         {
-            GameObject bullet = Instantiate(_bullet, transform.position + transform.forward * 3, Quaternion.FromToRotation(Vector3.up, transform.forward));
+            Debug.Log("heh");
+            GameObject bullet = Instantiate(_bullet, transform.position + transform.forward * 3 + _offsetY, Quaternion.FromToRotation(Vector3.up, transform.forward));
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * _bulletSpeed);
         }
 	}

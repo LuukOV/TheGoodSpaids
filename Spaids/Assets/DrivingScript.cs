@@ -38,18 +38,18 @@ public class DrivingScript : MonoBehaviour {
 	void Update () {
         checkVelocity();
 
-        if (/*Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)*/_velocity != 0)
-        {
+        //if (/*Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)*/_velocity != 0)
+        //{
 
             if (Input.GetAxis("Horizontal") < 0)
             {
-                _rotationVelocity -= _rotationSpeed * Mathf.Abs(_velocity);
+                _rotationVelocity -= _rotationSpeed;
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
-                _rotationVelocity += _rotationSpeed * Mathf.Abs(_velocity);
+                _rotationVelocity += _rotationSpeed;
             }
-        }
+        //}
 
         if (_velocity != 0)
         {
