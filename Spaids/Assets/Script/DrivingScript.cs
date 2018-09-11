@@ -36,6 +36,9 @@ public class DrivingScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return; // don't update when time is paused
+
         checkVelocity();
 
         //if (/*Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)*/_velocity != 0)
@@ -100,11 +103,12 @@ public class DrivingScript : MonoBehaviour {
 
     void checkVelocity()
     {
+
         if (Input.GetAxis("RT_TRIGGER") != 0) // Right Trigger
         {
             _velocity += _speed * Input.GetAxis("RT_TRIGGER");
         }
-        else if(Input.GetAxis("Vertical") > 0) // W/Up
+        else if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) // W/Up
         {
             _velocity += _speed * Input.GetAxis("Vertical");
         }
@@ -120,15 +124,15 @@ public class DrivingScript : MonoBehaviour {
             }
 
         }
-        else if (Input.GetAxis("Vertical") < 0)// S/Down
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))// S/Down
         {
             if (_velocity > 0)
             {
-                _velocity -= _breakSpeed * Input.GetAxis("Vertical");
+                _velocity -= _breakSpeed * -Input.GetAxis("Vertical");
             }
             else
             {
-                _velocity -= _backwardsSpeed * Input.GetAxis("Vertical");
+                _velocity -= _backwardsSpeed * -Input.GetAxis("Vertical");
             }
 
         }

@@ -30,6 +30,9 @@ public class InventoryScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return; // don't update when time is paused
+
         _UIManagerScript.SetObjectiveCount(_objectiveBoxes.Count);
         _UIManagerScript.SetSocialCount(_socialBoxes.Count);
         _UIManagerScript.SetKillerCount(_killerBoxes.Count);
@@ -66,7 +69,15 @@ public class InventoryScript : MonoBehaviour {
         for(int i = _objectiveBoxes.Count - 1; i > -1; i--)
         {
             if (ValidatePoint(_objectiveBoxes[i], deliveryPoint))
+            {
                 _objectiveBoxes.Remove(_objectiveBoxes[i]);
+                _UIManagerScript.IncreaseTime(10f);
+
+                if (_objectiveBoxes.Count < 1) // finish game
+                {
+                    _UIManagerScript.GetComponent<GameManagerScript>().ActivateEndScreen();
+                }
+            }
         }
 
         for (int i = _killerBoxes.Count - 1; i > -1; i--)

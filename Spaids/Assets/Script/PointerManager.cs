@@ -25,6 +25,9 @@ public class PointerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return; // don't update when time is paused
+
         if (_pointers.Count < 1)
             return;
 

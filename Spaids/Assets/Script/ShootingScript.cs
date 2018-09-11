@@ -20,9 +20,11 @@ public class ShootingScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return; // don't update when time is paused
+
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("heh");
             GameObject bullet = Instantiate(_bullet, transform.position + transform.forward * 3 + _offsetY, Quaternion.FromToRotation(Vector3.up, transform.forward));
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * _bulletSpeed);
         }

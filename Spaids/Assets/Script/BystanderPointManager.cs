@@ -20,10 +20,18 @@ public class BystanderPointManager : MonoBehaviour {
             _bystanders.Add(transform.GetChild(i).gameObject);
             transform.GetChild(i).gameObject.SetActive(false);
         }
+
+        for(int i = 0; i< _maxBystanders; i++)
+        {
+            getPoint();
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return; // don't update when time is paused
+
         _bystanderTimer -= Time.deltaTime;
         if(_bystanderTimer <= 0)
         {

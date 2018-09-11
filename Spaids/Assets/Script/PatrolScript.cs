@@ -25,6 +25,9 @@ public class PatrolScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return; // don't update when time is paused
+
         if (_patrolPath.Count < 1) return;
 
         if(Vector3.Distance(transform.position, _patrolPath[_target]) < 10f){

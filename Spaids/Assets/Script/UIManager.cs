@@ -10,12 +10,23 @@ public class UIManager : MonoBehaviour {
     public Text KillerBoxesCount;
     public Text TimeCount;
 
-    public static float GameTime = 100;
+    public float GameTime = 100;
+
+    private bool gameEnded = false;
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return;
+
         GameTime -= Time.deltaTime;
         TimeCount.text = "> " + (int)GameTime;
+
+        if(GameTime <= 0 && !gameEnded)
+        {
+            GetComponent<GameManagerScript>().ActivateLoseScreen();
+            gameEnded = true;
+        }
 	}
 
     public void SetObjectiveCount(int count)
@@ -31,5 +42,10 @@ public class UIManager : MonoBehaviour {
     public void SetKillerCount(int count)
     {
         KillerBoxesCount.text = "Killer X " + count;
+    }
+
+    public void IncreaseTime(float amount)
+    {
+        GameTime += amount;
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class DeliveryScript : MonoBehaviour {
 
     InventoryScript _inventoryScript;
+    [SerializeField]
+    GameObject _walkyTalky;
 
     void Start()
     {
@@ -20,7 +22,9 @@ public class DeliveryScript : MonoBehaviour {
         if(collider.tag == "Bystander")
         {
             _inventoryScript.AddBox(new DeliveryBox(DeliveryBox.BOXTYPE.SOCIAL, _inventoryScript._deliveryPointManager));
+            _walkyTalky.GetComponent<WalkyTalkyScript>().Enable();
             collider.gameObject.SetActive(false);
+
         }
         if(collider.tag == "EnemyPackage")
         {
