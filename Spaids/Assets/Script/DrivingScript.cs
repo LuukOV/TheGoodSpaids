@@ -124,11 +124,11 @@ public class DrivingScript : MonoBehaviour {
         {
             if (_velocity > 0)
             {
-                _velocity -= _breakSpeed * Input.GetAxis("Vertical");
+                _velocity -= _breakSpeed * -Input.GetAxis("Vertical");
             }
             else
             {
-                _velocity -= _backwardsSpeed * Input.GetAxis("Vertical");
+                _velocity -= _backwardsSpeed * -Input.GetAxis("Vertical");
             }
 
         }
