@@ -100,51 +100,41 @@ public class DrivingScript : MonoBehaviour {
 
     void checkVelocity()
     {
-        if (Input.GetJoystickNames().Length == 0)
+        if (Input.GetAxis("RT_TRIGGER") != 0) // Right Trigger
         {
-            if (Input.GetAxis("Vertical") > 0) //only check triggers if controller is connectected
+            _velocity += _speed * Input.GetAxis("RT_TRIGGER");
+        }
+        else if(Input.GetAxis("Vertical") > 0) // W/Up
+        {
+            _velocity += _speed * Input.GetAxis("Vertical");
+        }
+        if (Input.GetAxis("LT_TRIGGER") != 0) // Left Trigger
+        {
+            if (_velocity > 0)
             {
-                _velocity += _speed;
-            }
-            else if (Input.GetAxis("Vertical") < 0) //here too
-            {
-                if (_velocity > 0)
-                {
-                    _velocity -= _breakSpeed;
-                }
-                else
-                {
-                    _velocity -= _backwardsSpeed;
-                }
-
+                _velocity -= _breakSpeed * Input.GetAxis("LT_TRIGGER");
             }
             else
             {
-                decreaseSpeed();
+                _velocity -= _backwardsSpeed * Input.GetAxis("LT_TRIGGER");
             }
+
+        }
+        else if (Input.GetAxis("Vertical") < 0)// S/Down
+        {
+            if (_velocity > 0)
+            {
+                _velocity -= _breakSpeed * Input.GetAxis("Vertical");
+            }
+            else
+            {
+                _velocity -= _backwardsSpeed * Input.GetAxis("Vertical");
+            }
+
         }
         else
         {
-            if (Input.GetAxis("RT_TRIGGER") != 0) //only check triggers if controller is connectected
-            {
-                _velocity += _speed * Input.GetAxis("RT_TRIGGER");
-            }
-            else if (Input.GetAxis("LT_TRIGGER") != 0) //here too
-            {
-                if (_velocity > 0)
-                {
-                    _velocity -= _breakSpeed * Input.GetAxis("LT_TRIGGER"); 
-                }
-                else
-                {
-                    _velocity -= _backwardsSpeed * Input.GetAxis("LT_TRIGGER");
-                }
-
-            }
-            else
-            {
-                decreaseSpeed();
-            }
+            decreaseSpeed();
         }
 
     }

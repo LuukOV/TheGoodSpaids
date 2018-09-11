@@ -53,8 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BystanderPointManager.cs" />
      <Compile Include="Assets\Script\BulletScript.cs" />
+     <Compile Include="Assets\Script\BystanderPointManager.cs" />
      <Compile Include="Assets\Script\DeactivateOnStart.cs" />
      <Compile Include="Assets\Script\DeliveryBox.cs" />
      <Compile Include="Assets\Script\DeliveryPointManager.cs" />

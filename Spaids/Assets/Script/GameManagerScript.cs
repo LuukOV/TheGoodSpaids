@@ -9,6 +9,16 @@ public class GameManagerScript : MonoBehaviour {
     GameObject _endScreen;
     [SerializeField]
     GameObject _loseScreen;
+    [SerializeField]
+    GameObject _pauseScreen;
+
+    void Update()
+    {
+        if (Input.GetButton("Start"))
+        {
+            _pauseScreen.SetActive(true);
+        }
+    }
 
     public void GoToMain()
     {
@@ -28,5 +38,10 @@ public class GameManagerScript : MonoBehaviour {
     public void ActivateLoseScreen()
     {
         _loseScreen.SetActive(true);
+    }
+
+    public void ActivatePauseScreen()
+    {
+        _pauseScreen.SetActive(true);
     }
 }
