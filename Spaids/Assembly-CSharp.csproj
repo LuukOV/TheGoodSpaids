@@ -53,21 +53,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DrivingScript.cs" />
-     <Compile Include="Assets\MainMenuManager.cs" />
-     <Compile Include="Assets\PointerManager.cs" />
      <Compile Include="Assets\Script\BulletScript.cs" />
      <Compile Include="Assets\Script\DeactivateOnStart.cs" />
      <Compile Include="Assets\Script\DeliveryBox.cs" />
      <Compile Include="Assets\Script\DeliveryPointManager.cs" />
      <Compile Include="Assets\Script\DeliveryScript.cs" />
+     <Compile Include="Assets\Script\DrivingScript.cs" />
      <Compile Include="Assets\Script\EnemyScript.cs" />
+     <Compile Include="Assets\Script\GameManagerScript.cs" />
      <Compile Include="Assets\Script\InventoryScript.cs" />
+     <Compile Include="Assets\Script\MainMenuManager.cs" />
      <Compile Include="Assets\Script\PatrolScript.cs" />
+     <Compile Include="Assets\Script\PointerManager.cs" />
+     <Compile Include="Assets\Script\SelectFirstButton.cs" />
      <Compile Include="Assets\Script\SelfDestructScript.cs" />
      <Compile Include="Assets\Script\ShootingScript.cs" />
      <Compile Include="Assets\Script\UIManager.cs" />
-     <Compile Include="Assets\SelectFirstButton.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
