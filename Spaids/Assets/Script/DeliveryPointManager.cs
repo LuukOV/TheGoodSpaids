@@ -18,8 +18,11 @@ public class DeliveryPointManager : MonoBehaviour {
     {
         foreach (Transform gObject in GetComponentInChildren<Transform>())
         {
-            _deliveryPoints.Add(gObject.gameObject);
-            gObject.gameObject.SetActive(false);
+            if (gObject != transform)
+            {
+                _deliveryPoints.Add(gObject.gameObject);
+                gObject.gameObject.SetActive(false);
+            }
         }
     }
 	
