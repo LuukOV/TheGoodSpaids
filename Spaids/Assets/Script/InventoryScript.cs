@@ -7,7 +7,6 @@ public class InventoryScript : MonoBehaviour {
     [SerializeField]
     private GameObject UIManager;
     private UIManager _UIManagerScript;
-    private GameManagerScript _gameManagerScript;
 
     private List<DeliveryBox> _objectiveBoxes = new List<DeliveryBox>();
     private List<DeliveryBox> _socialBoxes = new List<DeliveryBox>();
@@ -19,7 +18,6 @@ public class InventoryScript : MonoBehaviour {
 	void Start () {
         Invoke("CreateObjective", 0.1f);
         _UIManagerScript = UIManager.GetComponent<UIManager>();
-        _gameManagerScript = UIManager.GetComponent<GameManagerScript>();
 	}
 	
     void CreateObjective()
@@ -67,16 +65,8 @@ public class InventoryScript : MonoBehaviour {
     {
         for(int i = _objectiveBoxes.Count - 1; i > -1; i--)
         {
-            if (ValidatePoint(_objectiveBoxes[i], deliveryPoint)) {
+            if (ValidatePoint(_objectiveBoxes[i], deliveryPoint))
                 _objectiveBoxes.Remove(_objectiveBoxes[i]);
-
-                _UIManagerScript.AddTime(10f);
-                // check if final
-                if (_objectiveBoxes.Count < 1)
-                {
-                    _gameManagerScript.ActivateEndScreen();
-                }
-            }
         }
 
         for (int i = _killerBoxes.Count - 1; i > -1; i--)
@@ -97,6 +87,7 @@ public class InventoryScript : MonoBehaviour {
         if (box.DeliveryPoint == pointLocation)
         {
             pointLocation.SetActive(false);
+            // points etc
             return true;
         }
         return false;
