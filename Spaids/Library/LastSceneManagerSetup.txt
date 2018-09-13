@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/SampleScene.unity
-=======
-- path: Assets/Scenes/houses.unity
->>>>>>> f440f363fcf16c611434e1373872b790d176b1ed
   isLoaded: 1
   isActive: 1
