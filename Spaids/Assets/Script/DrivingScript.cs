@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class DrivingScript : MonoBehaviour {
@@ -23,9 +22,9 @@ public class DrivingScript : MonoBehaviour {
     [SerializeField] float _breakSpeed = 2f;
 
     [SerializeField] float _maxJetRotationX = 30f;
-    [SerializeField] float _maxJetRotationZ = 50f;
-    [SerializeField] float _minJetRotationZ = 30f;
-    float _jetRotationOffset = 10f;
+    [SerializeField] float _maxJetRotationZ = 30f;
+    [SerializeField] float _jetRotationSpeed = 0.5f;
+    float _jetRotationOffset = 30f;
 
     public GameObject _backLeftJet;
     public GameObject _backRightJet;
@@ -52,8 +51,6 @@ public class DrivingScript : MonoBehaviour {
         checkVelocity();
         PositionJets();
 
-
-
         if (Input.GetAxis("Horizontal") < 0)
         {
             _rotationVelocity -= _rotationSpeed;
@@ -63,31 +60,20 @@ public class DrivingScript : MonoBehaviour {
             _rotationVelocity += _rotationSpeed;
         }
 
-        if (_velocity != 0)
+        if (_rotationVelocity > 0)
         {
-            if (_rotationVelocity > 0)
-            {
-                _rotationVelocity -= _rotationDecelerationMagnitude;
-            }
-            else if (_rotationVelocity < 0)
-            {
-                _rotationVelocity += _rotationDecelerationMagnitude;
-            }
-
+            _rotationVelocity -= _rotationDecelerationMagnitude;
         }
-        else
+        else if (_rotationVelocity < 0)
         {
-            if (_rotationVelocity > 0)
-            {
-
-                _rotationVelocity -= _rotationDecelerationMagnitude / 5f;
-            }
-            else if (_rotationVelocity < 0)
-            {
-                _rotationVelocity += _rotationDecelerationMagnitude / 5f;
-            }
+            _rotationVelocity += _rotationDecelerationMagnitude;
         }
-        if (Mathf.Abs(_rotationVelocity) < 0.005f)
+        if(_drivingMode == Mode.Normal && Mathf.Abs(_rotationVelocity) < 0.05f)
+        {
+            _rotationVelocity = 0;
+        }
+
+        if (Mathf.Abs(_rotationVelocity) < 0.01f && Input.GetAxis("Horizontal") == 0)
         {
             _rotationVelocity = 0f;
         }
@@ -160,7 +146,7 @@ public class DrivingScript : MonoBehaviour {
         {
             foreach(GameObject jet in _jets)
             {
-                if(jet.transform.eulerAngles.x <= _maxJetRotationX || jet.transform.eulerAngles.x >= 360 - _maxJetRotationX)
+                if(jet.transform.localEulerAngles.x <= _maxJetRotationX || jet.transform.localEulerAngles.x >= 360 - _maxJetRotationX)
                 {
                     jet.transform.Rotate(1, 0, 0);
                 }
@@ -170,50 +156,149 @@ public class DrivingScript : MonoBehaviour {
         {
             foreach (GameObject jet in _jets)
             {
-                if (jet.transform.eulerAngles.x > 360 - _maxJetRotationX || jet.transform.eulerAngles.x <= _maxJetRotationX + 1)
+                if (jet.transform.localEulerAngles.x > 360 - _maxJetRotationX || jet.transform.localEulerAngles.x <= _maxJetRotationX + 1)
                 {
                     jet.transform.Rotate(-1, 0, 0);
                 }
             }
         }
-        else
+        else // stabelize
         {
             foreach (GameObject jet in _jets)
             {
-                if (jet.transform.eulerAngles.x > 359 - _maxJetRotationX)
+                if (jet.transform.localEulerAngles.x > 359 - _maxJetRotationX)
                 {
-                    jet.transform.Rotate(1, 0, 0);
+                    jet.transform.Rotate(_jetRotationSpeed, 0, 0);
                 }
-                else if (jet.transform.eulerAngles.x > 0)
+                else if (jet.transform.localEulerAngles.x > 0)
                 {
-                    jet.transform.Rotate(-1, 0, 0);
+                    jet.transform.Rotate(-_jetRotationSpeed, 0, 0);
                 }
 
             }
         }
 
-        if (_velocity >= 0) // forward
+         if (_velocity >= 0) // --FORWARD--
         {
-            if (_rotationVelocity > 0) // right
+            //stabelize rearjets
+            if (_backLeftJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
             {
-                if (_frontLeftJet.transform.eulerAngles.z > 359 - _minJetRotationZ || _frontLeftJet.transform.eulerAngles.z < _minJetRotationZ + _jetRotationOffset)
-                { // left jet
-                    _frontLeftJet.transform.eulerAngles = new Vector3(_frontLeftJet.transform.eulerAngles.x, _frontLeftJet.transform.eulerAngles.y, _frontLeftJet.transform.eulerAngles.z - 1);
-                }
-                if (_frontRightJet.transform.eulerAngles.z > 359 - _minJetRotationZ || _frontRightJet.transform.eulerAngles.z < _minJetRotationZ + _jetRotationOffset) // right jet
+                _backLeftJet.transform.localEulerAngles = new Vector3(_backLeftJet.transform.localEulerAngles.x, _backLeftJet.transform.localEulerAngles.y, _backLeftJet.transform.localEulerAngles.z - 0.5f);
+            }
+            else if (_backLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _backLeftJet.transform.localEulerAngles = new Vector3(_backLeftJet.transform.localEulerAngles.x, _backLeftJet.transform.localEulerAngles.y, _backLeftJet.transform.localEulerAngles.z + 0.5f);
+            }
+            if (_backRightJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _backRightJet.transform.localEulerAngles = new Vector3(_backRightJet.transform.localEulerAngles.x, _backRightJet.transform.localEulerAngles.y, _backRightJet.transform.localEulerAngles.z - 0.5f);
+            }
+            else if (_backLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _backRightJet.transform.localEulerAngles = new Vector3(_backRightJet.transform.localEulerAngles.x, _backRightJet.transform.localEulerAngles.y, _backRightJet.transform.localEulerAngles.z + 0.5f);
+            }
+
+            if (Mathf.Abs(_rotationVelocity) <= 0.1f)
+            {
+                if (_frontLeftJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
                 {
-                    _frontRightJet.transform.eulerAngles = new Vector3(_frontRightJet.transform.eulerAngles.x, _frontRightJet.transform.eulerAngles.y, _frontRightJet.transform.eulerAngles.z - 1);
+                    _frontLeftJet.transform.localEulerAngles = new Vector3(_frontLeftJet.transform.localEulerAngles.x, _frontLeftJet.transform.localEulerAngles.y, _frontLeftJet.transform.localEulerAngles.z - 0.5f);
+                }
+                else if (_frontLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _frontLeftJet.transform.localEulerAngles = new Vector3(_frontLeftJet.transform.localEulerAngles.x, _frontLeftJet.transform.localEulerAngles.y, _frontLeftJet.transform.localEulerAngles.z + 0.5f);
+                }
+                if (_frontRightJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _frontRightJet.transform.localEulerAngles = new Vector3(_frontRightJet.transform.localEulerAngles.x, _frontRightJet.transform.localEulerAngles.y, _frontRightJet.transform.localEulerAngles.z - 0.5f);
+                }
+                else if (_frontLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _frontRightJet.transform.localEulerAngles = new Vector3(_frontRightJet.transform.localEulerAngles.x, _frontRightJet.transform.localEulerAngles.y, _frontRightJet.transform.localEulerAngles.z + 0.5f);
+                }
+            }
+            else if (_rotationVelocity > 0) // right
+            {
+                if (_frontLeftJet.transform.localEulerAngles.z > 359 - _maxJetRotationZ || _frontLeftJet.transform.localEulerAngles.z < _maxJetRotationZ + _jetRotationOffset)
+                { // left jet
+                    _frontLeftJet.transform.localEulerAngles = new Vector3(_frontLeftJet.transform.localEulerAngles.x, _frontLeftJet.transform.localEulerAngles.y, _frontLeftJet.transform.localEulerAngles.z - 1);
+                }
+                if (_frontRightJet.transform.localEulerAngles.z > 359 - _maxJetRotationZ || _frontRightJet.transform.localEulerAngles.z < _maxJetRotationZ + _jetRotationOffset) // right jet
+                {
+                    _frontRightJet.transform.localEulerAngles = new Vector3(_frontRightJet.transform.localEulerAngles.x, _frontRightJet.transform.localEulerAngles.y, _frontRightJet.transform.localEulerAngles.z - 1);
                 }
             }
             else if (_rotationVelocity < 0) // left
             {
-                if (_frontLeftJet.transform.eulerAngles.z > 359 - (_minJetRotationZ + _jetRotationOffset) || _frontLeftJet.transform.eulerAngles.z < _minJetRotationZ)
+                if (_frontLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset) || _frontLeftJet.transform.localEulerAngles.z < _maxJetRotationZ)
                 { // left jet
-                    _frontLeftJet.transform.eulerAngles = new Vector3(_frontLeftJet.transform.eulerAngles.x, _frontLeftJet.transform.eulerAngles.y, _frontLeftJet.transform.eulerAngles.z + 1);
+                    _frontLeftJet.transform.localEulerAngles = new Vector3(_frontLeftJet.transform.localEulerAngles.x, _frontLeftJet.transform.localEulerAngles.y, _frontLeftJet.transform.localEulerAngles.z + 1);
                 }
-                if (_frontRightJet.transform.eulerAngles.z > 359 - (_minJetRotationZ + _jetRotationOffset) || _frontRightJet.transform.eulerAngles.z < _minJetRotationZ) // right jet
+                if (_frontRightJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset) || _frontRightJet.transform.localEulerAngles.z < _maxJetRotationZ) // right jet
                 {
-                    _frontRightJet.transform.eulerAngles = new Vector3(_frontRightJet.transform.eulerAngles.x, _frontRightJet.transform.eulerAngles.y, _frontRightJet.transform.eulerAngles.z + 1);
+                    _frontRightJet.transform.localEulerAngles = new Vector3(_frontRightJet.transform.localEulerAngles.x, _frontRightJet.transform.localEulerAngles.y, _frontRightJet.transform.localEulerAngles.z + 1);
+                }
+            }
+        }
+        else // -- BACKWARDS --
+        {
+            // stabelize front jets
+            if (_frontLeftJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _frontLeftJet.transform.localEulerAngles = new Vector3(_frontLeftJet.transform.localEulerAngles.x, _frontLeftJet.transform.localEulerAngles.y, _frontLeftJet.transform.localEulerAngles.z - 0.5f);
+            }
+            else if (_frontLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _frontLeftJet.transform.localEulerAngles = new Vector3(_frontLeftJet.transform.localEulerAngles.x, _frontLeftJet.transform.localEulerAngles.y, _frontLeftJet.transform.localEulerAngles.z + 0.5f);
+            }
+            if (_frontRightJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _frontRightJet.transform.localEulerAngles = new Vector3(_frontRightJet.transform.localEulerAngles.x, _frontRightJet.transform.localEulerAngles.y, _frontRightJet.transform.localEulerAngles.z - 0.5f);
+            }
+            else if (_frontLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+            {
+                _frontRightJet.transform.localEulerAngles = new Vector3(_frontRightJet.transform.localEulerAngles.x, _frontRightJet.transform.localEulerAngles.y, _frontRightJet.transform.localEulerAngles.z + 0.5f);
+            }
+
+            if (Mathf.Abs(_rotationVelocity) <= 0.1f)
+            {
+                if (_backLeftJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _backLeftJet.transform.localEulerAngles = new Vector3(_backLeftJet.transform.localEulerAngles.x, _backLeftJet.transform.localEulerAngles.y, _backLeftJet.transform.localEulerAngles.z - 0.5f);
+                }
+                else if (_backLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _backLeftJet.transform.localEulerAngles = new Vector3(_backLeftJet.transform.localEulerAngles.x, _backLeftJet.transform.localEulerAngles.y, _backLeftJet.transform.localEulerAngles.z + 0.5f);
+                }
+                if (_backRightJet.transform.localEulerAngles.z < (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _backRightJet.transform.localEulerAngles = new Vector3(_backRightJet.transform.localEulerAngles.x, _backRightJet.transform.localEulerAngles.y, _backRightJet.transform.localEulerAngles.z - 0.5f);
+                }
+                else if (_backLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset))
+                {
+                    _backRightJet.transform.localEulerAngles = new Vector3(_backRightJet.transform.localEulerAngles.x, _backRightJet.transform.localEulerAngles.y, _backRightJet.transform.localEulerAngles.z + 0.5f);
+                }
+            }
+            else if (_rotationVelocity < 0) // right
+            {
+                if (_backLeftJet.transform.localEulerAngles.z > 359 - _maxJetRotationZ || _backLeftJet.transform.localEulerAngles.z < _maxJetRotationZ + _jetRotationOffset)
+                { // left jet
+                    _backLeftJet.transform.localEulerAngles = new Vector3(_backLeftJet.transform.localEulerAngles.x, _backLeftJet.transform.localEulerAngles.y, _backLeftJet.transform.localEulerAngles.z - 1);
+                }
+                if (_backRightJet.transform.localEulerAngles.z > 359 - _maxJetRotationZ || _backRightJet.transform.localEulerAngles.z < _maxJetRotationZ + _jetRotationOffset) // right jet
+                {
+                    _backRightJet.transform.localEulerAngles = new Vector3(_backRightJet.transform.localEulerAngles.x, _backRightJet.transform.localEulerAngles.y, _backRightJet.transform.localEulerAngles.z - 1);
+                }
+            }
+            else if (_rotationVelocity > 0) // left
+            {
+                if (_backLeftJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset) || _backLeftJet.transform.localEulerAngles.z < _maxJetRotationZ)
+                { // left jet
+                    _backLeftJet.transform.localEulerAngles = new Vector3(_backLeftJet.transform.localEulerAngles.x, _backLeftJet.transform.localEulerAngles.y, _backLeftJet.transform.localEulerAngles.z + 1);
+                }
+                if (_backRightJet.transform.localEulerAngles.z > 359 - (_maxJetRotationZ + _jetRotationOffset) || _backRightJet.transform.localEulerAngles.z < _maxJetRotationZ) // right jet
+                {
+                    _backRightJet.transform.localEulerAngles = new Vector3(_backRightJet.transform.localEulerAngles.x, _backRightJet.transform.localEulerAngles.y, _backRightJet.transform.localEulerAngles.z + 1);
                 }
             }
         }

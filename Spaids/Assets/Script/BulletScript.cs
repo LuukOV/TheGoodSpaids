@@ -7,11 +7,15 @@ public class BulletScript : MonoBehaviour {
     [SerializeField]
     private float _damageAmount = 20f;
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+
+        if (other.transform.parent != null)
         {
-            other.gameObject.GetComponent<EnemyScript>().Damage(_damageAmount);
+            if (other.transform.parent.gameObject.tag == "Enemy")
+            {
+                other.transform.parent.gameObject.GetComponent<EnemyScript>().Damage(_damageAmount);
+            }
         }
         Destroy(gameObject);
     }

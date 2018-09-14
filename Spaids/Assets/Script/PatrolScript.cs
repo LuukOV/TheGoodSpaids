@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrolScript : MonoBehaviour {
 
+    public GameObject _checkpointsManager;
     public List<Vector3> _patrolPath = new List<Vector3>();
+    public float _distanceOffset = 5f;
     [SerializeField]
     private float _globalSpeed = 50f;
     private int _target = 0;
+    private NavMeshAgent _agent;
     Vector3 _velocity;
 
     [SerializeField]
@@ -15,12 +19,31 @@ public class PatrolScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        foreach (Transform gObject in GetComponentInChildren<Transform>())
+        NavMeshHit closestHit;
+
+        if (NavMesh.SamplePosition(gameObject.transform.position, out closestHit, 500f, NavMesh.AllAreas))
+            gameObject.transform.position = closestHit.position;
+
+        foreach (Transform gObject in _checkpointsManager.GetComponentInChildren<Transform>())
         {
-            Vector3 vec3 = new Vector3(gObject.position.x, gObject.position.y, gObject.position.z);
-            _patrolPath.Add(vec3);
+            Debug.Log("hmm");
+            if (gObject != _checkpointsManager.transform)
+            {
+                Vector3 vec3 = new Vector3(gObject.position.x, gObject.position.y, gObject.position.z);
+                _patrolPath.Add(vec3);
+            }
             
         }
+
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.destination = _patrolPath[0];
+    }
+
+    void SetNextPoint()
+    {
+        _target = (_target + 1) % _patrolPath.Count;
+
+        _agent.destination = _patrolPath[_target];
     }
 	
 	// Update is called once per frame
@@ -28,23 +51,18 @@ public class PatrolScript : MonoBehaviour {
         if (Time.timeScale <= 0)
             return; // don't update when time is paused
 
+        if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
+            SetNextPoint();
+
         if (_patrolPath.Count < 1) return;
 
-        if(Vector3.Distance(transform.position, _patrolPath[_target]) < 10f){
-            if(_target >= _patrolPath.Count - 1)
-            {
-                _target = 0;
-            }
-            else
-            {
-                _target++;
-            }
-        }
 
+        /*
+        Debug.Log(_target + " - " + Vector3.Distance(transform.position, _patrolPath[_target]));
         _velocity = (_patrolPath[_target] - transform.position).normalized * _speed;
         _velocity.y = 0;
         transform.position += _velocity * (Time.deltaTime * _globalSpeed);
-        transform.LookAt(_patrolPath[_target]);
+        transform.LookAt(_patrolPath[_target]);*/
 
 	}
 }

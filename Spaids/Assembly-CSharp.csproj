@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LockYRotationScript.cs" />
      <Compile Include="Assets\Script\BulletScript.cs" />
      <Compile Include="Assets\Script\BystanderPointManager.cs" />
      <Compile Include="Assets\Script\DeactivateOnStart.cs" />
@@ -64,6 +63,7 @@
      <Compile Include="Assets\Script\EnemyScript.cs" />
      <Compile Include="Assets\Script\GameManagerScript.cs" />
      <Compile Include="Assets\Script\InventoryScript.cs" />
+     <Compile Include="Assets\Script\LockYRotationScript.cs" />
      <Compile Include="Assets\Script\MainMenuManager.cs" />
      <Compile Include="Assets\Script\ObjectiveScript.cs" />
      <Compile Include="Assets\Script\PatrolScript.cs" />
@@ -71,8 +71,9 @@
      <Compile Include="Assets\Script\SelectFirstButton.cs" />
      <Compile Include="Assets\Script\SelfDestructScript.cs" />
      <Compile Include="Assets\Script\ShootingScript.cs" />
+     <Compile Include="Assets\Script\TailLightScript.cs" />
      <Compile Include="Assets\Script\UIManager.cs" />
-     <Compile Include="Assets\TailLightScript.cs" />
+     <Compile Include="Assets\Script\WalkyTalkyScript.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -103,7 +104,6 @@
      <Compile Include="Assets\Third Party\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
-     <Compile Include="Assets\WalkyTalkyScript.cs" />
      <None Include="Assets\Third Party\Standard Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Third Party\Standard Assets\Vehicles\Aircraft\AircraftGuidelines.txt" />
      <None Include="Assets\Third Party\Standard Assets\Vehicles\Car\Shaders\ReflectiveDiffuseSpecTransp.shader" />
