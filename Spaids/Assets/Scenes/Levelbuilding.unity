@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.99
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 49b27dccc0686e14cb1e1b346e96a15d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -13918,6 +13918,56 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1531056877303624, guid: 8cecd33161a04034c87e6d62fe53805f, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224449889386002282, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224484194440836814, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224767480518501082, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224275103676090338, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224769259914810586, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224033604558518446, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224813313920770830, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224209630840419792, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224269166648147522, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224615344330207250, guid: 8cecd33161a04034c87e6d62fe53805f,
+        type: 2}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -46352,7 +46402,7 @@ Terrain:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1681815948}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 6c006af2d85cc3f448000d4bf704c50b, type: 2}
   m_TreeDistance: 5000
