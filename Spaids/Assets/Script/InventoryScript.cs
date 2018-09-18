@@ -7,6 +7,7 @@ public class InventoryScript : MonoBehaviour {
     [SerializeField]
     private GameObject UIManager;
     private UIManager _UIManagerScript;
+    private PointSystemScript _pointSystem;
 
     private List<DeliveryBox> _objectiveBoxes = new List<DeliveryBox>();
     private List<DeliveryBox> _socialBoxes = new List<DeliveryBox>();
@@ -18,6 +19,7 @@ public class InventoryScript : MonoBehaviour {
 	void Start () {
         Invoke("CreateObjective", 0.1f);
         _UIManagerScript = UIManager.GetComponent<UIManager>();
+        _pointSystem = GameObject.FindGameObjectWithTag("Canvas").GetComponent<PointSystemScript>();
 	}
 	
     void CreateObjective()
@@ -56,11 +58,17 @@ public class InventoryScript : MonoBehaviour {
                 _objectiveBoxes.Add(deliveryBox);
                 break;
             case DeliveryBox.BOXTYPE.KILLER:
-                _killerBoxes.Add(deliveryBox);
-                break;
+                {
+                    _pointSystem.TotalBoxesCollected++;
+                    _killerBoxes.Add(deliveryBox);
+                    break;
+                }
             case DeliveryBox.BOXTYPE.SOCIAL:
-                _socialBoxes.Add(deliveryBox);
-                break;
+                {
+                    _pointSystem.TotalBoxesCollected++;
+                    _socialBoxes.Add(deliveryBox);
+                    break;
+                }
         }
     }
 
@@ -82,14 +90,20 @@ public class InventoryScript : MonoBehaviour {
 
         for (int i = _killerBoxes.Count - 1; i > -1; i--)
         {
-            if(ValidatePoint(_killerBoxes[i], deliveryPoint))
+            if (ValidatePoint(_killerBoxes[i], deliveryPoint))
+            {
+                _pointSystem.SocializerPoints += 10f;
                 _killerBoxes.Remove(_killerBoxes[i]);
+            }
         }
 
         for (int i = _socialBoxes.Count - 1; i > -1; i--)
         {
-            if(ValidatePoint(_socialBoxes[i], deliveryPoint))
+            if (ValidatePoint(_socialBoxes[i], deliveryPoint))
+            {
+                _pointSystem.SocializerPoints += 10f;
                 _socialBoxes.Remove(_socialBoxes[i]);
+            }
         }
     }
 

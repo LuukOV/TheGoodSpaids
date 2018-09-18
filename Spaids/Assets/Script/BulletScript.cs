@@ -15,8 +15,8 @@ public class BulletScript : MonoBehaviour {
             if (other.transform.parent.gameObject.tag == "Enemy")
             {
                 other.gameObject.GetComponentInParent<EnemyScript>().Damage(_damageAmount);
+                Destroy(gameObject);
             }
         }
-        Destroy(gameObject);
     }
 }

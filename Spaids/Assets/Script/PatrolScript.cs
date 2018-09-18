@@ -40,7 +40,6 @@ public class PatrolScript : MonoBehaviour {
 
     void SetNextPoint()
     {
-        Debug.Log("heh");
         _target = (_target + 1) % _patrolPath.Count;
 
         _agent.destination = _patrolPath[_target];
@@ -50,8 +49,6 @@ public class PatrolScript : MonoBehaviour {
 	void Update () {
         if (Time.timeScale <= 0)
             return; // don't update when time is paused
-
-        Debug.Log(_agent.destination + " - " + _target + " - " + _agent.remainingDistance);
 
         if (!_agent.pathPending && _agent.remainingDistance < 2f)
             SetNextPoint();
