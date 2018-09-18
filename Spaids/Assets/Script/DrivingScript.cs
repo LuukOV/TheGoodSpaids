@@ -36,10 +36,12 @@ public class DrivingScript : MonoBehaviour {
     float _rotationVelocity = 0f;
     float _velocity = 0f;
     Rigidbody _rigidbody;
+    CharacterController _charControler;
 
 	// Use this for initialization
 	void Start () {
         _rigidbody = GetComponent<Rigidbody>();
+        _charControler = GetComponent<CharacterController>();
         _jets = new List<GameObject>() { _backLeftJet, _backRightJet, _frontLeftJet, _frontRightJet }; // fill list
     }
 	
@@ -93,7 +95,7 @@ public class DrivingScript : MonoBehaviour {
             _velocity = _maxBackwardsSpeed;
         }
 
-        transform.position += (transform.forward * _velocity) * (Time.deltaTime * _globalAmplifier);
+        _charControler.Move((transform.forward * _velocity) * (Time.deltaTime * _globalAmplifier));
     }
 
     void checkVelocity()
