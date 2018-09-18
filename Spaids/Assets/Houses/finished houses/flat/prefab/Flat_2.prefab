@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4938053778110240}
   - component: {fileID: 33612794016368370}
   - component: {fileID: 23768592262828504}
+  - component: {fileID: 65553721725955934}
   m_Layer: 0
   m_Name: Part5_FlatterGroup
   m_TagString: Untagged
@@ -630,9 +631,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1310658010162130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.42, y: 0, z: -32.65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.71051055, z: -0, w: 0.7036866}
+  m_LocalPosition: {x: 483.6, y: 0.10331825, z: 15.6}
+  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 4801843876635424}
   - {fileID: 4548471592137780}
@@ -644,7 +645,7 @@ Transform:
   - {fileID: 4209179878764872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.553, z: 0}
 --- !u!4 &4709653092360260
 Transform:
   m_ObjectHideFlags: 1
@@ -1101,6 +1102,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 10, z: 16}
   m_Center: {x: 0, y: 5, z: -0.5}
+--- !u!65 &65553721725955934
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254830276383922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.754199, y: 3.8299286, z: 15.240842}
+  m_Center: {x: 0.0000034570696, y: 1.8109566, z: 0}
 --- !u!208 &208089706750329272
 NavMeshObstacle:
   m_ObjectHideFlags: 1
