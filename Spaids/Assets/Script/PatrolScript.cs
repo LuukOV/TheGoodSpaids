@@ -26,7 +26,6 @@ public class PatrolScript : MonoBehaviour {
 
         foreach (Transform gObject in _checkpointsManager.GetComponentInChildren<Transform>())
         {
-            Debug.Log("hmm");
             if (gObject != _checkpointsManager.transform)
             {
                 Vector3 vec3 = new Vector3(gObject.position.x, gObject.position.y, gObject.position.z);
@@ -41,6 +40,7 @@ public class PatrolScript : MonoBehaviour {
 
     void SetNextPoint()
     {
+        Debug.Log("heh");
         _target = (_target + 1) % _patrolPath.Count;
 
         _agent.destination = _patrolPath[_target];
@@ -51,7 +51,9 @@ public class PatrolScript : MonoBehaviour {
         if (Time.timeScale <= 0)
             return; // don't update when time is paused
 
-        if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
+        Debug.Log(_agent.destination + " - " + _target + " - " + _agent.remainingDistance);
+
+        if (!_agent.pathPending && _agent.remainingDistance < 2f)
             SetNextPoint();
 
         if (_patrolPath.Count < 1) return;
