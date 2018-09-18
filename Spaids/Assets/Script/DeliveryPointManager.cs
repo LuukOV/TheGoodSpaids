@@ -28,7 +28,7 @@ public class DeliveryPointManager : MonoBehaviour {
 		
 	}
 
-    public GameObject getPoint()
+    public GameObject getPoint(bool _objective)
     {
         if (_deliveryPoints.Count <= 0)
             Debug.Log("No Delivery points?");
@@ -39,6 +39,14 @@ public class DeliveryPointManager : MonoBehaviour {
             if (!_deliveryPoints[random].activeSelf)
             {
                 _deliveryPoints[random].SetActive(true);
+                if (_objective)
+                {
+                    _deliveryPoints[random].GetComponent<PickupSwitchScript>().EnableTypeObjective();
+                }
+                else
+                {
+                    _deliveryPoints[random].GetComponent<PickupSwitchScript>().EnableTypeSocial();
+                }
                 return _deliveryPoints[random];
             }
         }

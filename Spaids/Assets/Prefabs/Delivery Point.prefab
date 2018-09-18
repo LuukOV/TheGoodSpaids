@@ -19,10 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4870965663036234}
-  - component: {fileID: 33278264587740302}
-  - component: {fileID: 23601409121771066}
   - component: {fileID: 136777272388071894}
   - component: {fileID: 114944239586936638}
+  - component: {fileID: 114281724623871208}
   m_Layer: 0
   m_Name: Delivery Point
   m_TagString: DeliveryPoint
@@ -43,48 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23601409121771066
-MeshRenderer:
+--- !u!114 &114281724623871208
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852137737843256}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: fcb16b2f19670bf49bb24a27a7247c35, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &33278264587740302
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1852137737843256}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628ff8999c990954d9a1e11c718f8148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _socialPickup: {fileID: 1081961095023018, guid: fe325e659771f6f42bcc2c5b1337a71b,
+    type: 2}
+  _objectivePickup: {fileID: 1082518409896400, guid: 826fb3090d2f2264e8952fd682661248,
+    type: 2}
 --- !u!114 &114944239586936638
 MonoBehaviour:
   m_ObjectHideFlags: 1

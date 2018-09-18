@@ -28,6 +28,6 @@ public class DeliveryBox {
     public DeliveryBox(BOXTYPE type, GameObject _deliveryPointManager)
     {
         _type = type;
-        _deliveryPoint = _deliveryPointManager.GetComponent<DeliveryPointManager>().getPoint();
+        _deliveryPoint = _deliveryPointManager.GetComponent<DeliveryPointManager>().getPoint(type == BOXTYPE.MAIN ? true : false);
     }
 }
