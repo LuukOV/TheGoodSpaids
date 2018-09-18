@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class ShootingScript : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject _bullet;
-    [SerializeField]
-    private GameObject _shootingPoint;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private GameObject _shootingPoint;
 
-    [SerializeField]
-    private float _bulletSpeed = 1000f;
-    [SerializeField]
-    private float _loadSpeed = 0.01f;
+    [SerializeField] private float _bulletSpeed = 1000f;
+    [SerializeField] private float _loadSpeed = 0.01f;
+    [SerializeField] private float _maxIncreasedLoadSpeed = 2f;
     private float _increasedLoadSpeed;
-    [SerializeField]
-    private float _maxIncreasedLoadSpeed = 2f;
 
     private float _rotationSpeed = 0f;
-    [SerializeField]
-    private float _maxRotationSpeed = 10f;
+    [SerializeField] private float _maxRotationSpeed = 10f;
     private Vector3 _rotationZ = new Vector3(0, 0, 0);
 
+    [SerializeField] AudioClip _startupClip;
+    [SerializeField] AudioClip _spinClip;
+    [SerializeField] AudioClip _endClip;
+
     private DrivingScript _drivingScript;
+    private AudioSource _audioSource;
 
 	// Use this for initialization
 	void Start () {
         _drivingScript = GetComponent<DrivingScript>();
+        _audioSource = GetComponent<AudioSource>();
         _increasedLoadSpeed = _loadSpeed;
 	}
 	
@@ -34,9 +34,12 @@ public class ShootingScript : MonoBehaviour {
 	void Update () {
         if (Time.timeScale <= 0)
             return; // don't update when time is paused
+        CheckAudio();
+
 
         if (Input.GetButton("Fire1"))
         {
+
             _rotationSpeed += _increasedLoadSpeed;
             _increasedLoadSpeed += _loadSpeed;
 
@@ -53,10 +56,36 @@ public class ShootingScript : MonoBehaviour {
             _increasedLoadSpeed -= _loadSpeed * 2;
             _rotationSpeed -= _loadSpeed * 2;
         }
+
+
         _increasedLoadSpeed = Mathf.Clamp(_increasedLoadSpeed, 0, _maxIncreasedLoadSpeed);
         _rotationSpeed = Mathf.Clamp(_rotationSpeed, 0, _maxRotationSpeed + 1f);
 
         _rotationZ.z = _rotationSpeed;
         transform.Rotate(_rotationZ);
 	}
+
+    void CheckAudio()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _audioSource.clip = _startupClip;
+            _audioSource.loop = false;
+            _audioSource.Play();
+        }
+
+        if (Input.GetButton("Fire1") && !_audioSource.isPlaying)
+        {
+            _audioSource.clip = _spinClip;
+            _audioSource.loop = true;
+            _audioSource.Play();
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            _audioSource.clip = _endClip;
+            _audioSource.loop = false;
+            _audioSource.Play();
+        }
+    }
 }

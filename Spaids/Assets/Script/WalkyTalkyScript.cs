@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class WalkyTalkyScript : MonoBehaviour {
 
+    public AudioMixer _audioMixer;
     public AudioClip[] _clips;
     private AudioSource _audioSource;
     float _timer = 0f;
@@ -20,6 +22,7 @@ public class WalkyTalkyScript : MonoBehaviour {
         AudioClip clip = _clips[Random.Range(0, _clips.Length)];
         _audioSource.clip = clip;
         _timer = clip.length;
+        IncreaseSound();
         _audioSource.Play();
     }
 
@@ -28,6 +31,7 @@ public class WalkyTalkyScript : MonoBehaviour {
         _timer -= Time.deltaTime;
         if(_timer <= 0)
         {
+            DisableSound();
             Disable();
         }
     }
@@ -36,5 +40,17 @@ public class WalkyTalkyScript : MonoBehaviour {
     public void Disable()
     {
         gameObject.SetActive(false);
+    }
+
+    public void DisableSound()
+    {
+        _audioMixer.SetFloat("backgroundVolume", 0f);
+        _audioMixer.SetFloat("effectVolume", 0f);
+    }
+
+    public void IncreaseSound()
+    {
+        _audioMixer.SetFloat("backgroundVolume", -5f);
+        _audioMixer.SetFloat("effectVolume", -5f);
     }
 }

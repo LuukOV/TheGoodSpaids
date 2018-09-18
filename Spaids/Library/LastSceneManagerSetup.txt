@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/Levelbuilding.unity
-=======
-- path: Assets/Scenes/houses.unity
->>>>>>> 50fed99e96879f88df980ce6849b0919195c0a4f
   isLoaded: 1
   isActive: 1

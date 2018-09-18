@@ -14,6 +14,9 @@ public class PointerManager : MonoBehaviour {
     [SerializeField]
     float _pointerDistanceAmp = 10;
 
+    [SerializeField] Sprite _objectiveImage;
+    [SerializeField] Sprite _socialImage;
+
     DeliveryPointManager _deliveryPointManager;
     List<Image> _pointers = new List<Image>();
 
@@ -36,6 +39,15 @@ public class PointerManager : MonoBehaviour {
             GameObject obj = _deliveryPointManager._deliveryPoints[i];
 
             if (obj.activeSelf) {
+                bool IsObjective = obj.GetComponent<PickupSwitchScript>().TypeIsObjective;
+                if (IsObjective)
+                {
+                    _pointers[i].sprite = _objectiveImage;
+                }
+                else
+                {
+                    _pointers[i].sprite = _socialImage;
+                }
                 _pointers[i].gameObject.SetActive(true);
                 updatePointer(obj, i);
             }

@@ -6,6 +6,8 @@ public class PickupSwitchScript : MonoBehaviour {
     public GameObject _socialPickup;
     public GameObject _objectivePickup;
 
+    public bool TypeIsObjective;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -26,12 +28,14 @@ public class PickupSwitchScript : MonoBehaviour {
 
     public void EnableTypeObjective()
     {
+        TypeIsObjective = true;
         DestroyOffspring();
         Instantiate(_objectivePickup, transform);
     }
 
     public void EnableTypeSocial()
     {
+        TypeIsObjective = false;
         DestroyOffspring();
         Instantiate(_socialPickup, transform);
     }

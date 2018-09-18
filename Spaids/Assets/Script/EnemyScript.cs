@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
 
-    [SerializeField]
-    private float _health = 100f;
-
-    [SerializeField]
-    private GameObject _package;
+    [SerializeField] private float _health = 100f;
+    [SerializeField] private float _killerPoints = 10f;
+    [SerializeField] private GameObject _package;
+    [SerializeField] private GameObject _explosion;
 
     public void Damage(float damageAmount)
     {
@@ -22,8 +21,9 @@ public class EnemyScript : MonoBehaviour {
 
     void Die()
     {
+        GameObject.FindWithTag("Canvas").GetComponent<PointSystemScript>().KillerPoints += _killerPoints;
+        Instantiate(_explosion, transform.position, Quaternion.FromToRotation(Vector3.forward, Vector3.forward));
         Instantiate(_package, transform.position, Quaternion.FromToRotation(Vector3.forward, Vector3.forward));
-        Debug.Log("NOOOOOOOO!");
         Destroy(gameObject);
     }
 }

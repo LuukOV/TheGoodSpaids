@@ -8,6 +8,7 @@ TagManager:
   - Bystander
   - Enemy
   - EnemyPackage
+  - Canvas
   layers:
   - Default
   - TransparentFX
