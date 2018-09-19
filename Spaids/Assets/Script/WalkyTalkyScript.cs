@@ -9,6 +9,7 @@ public class WalkyTalkyScript : MonoBehaviour {
     public AudioClip[] _clips;
     private AudioSource _audioSource;
     float _timer = 0f;
+    [SerializeField] float _soundDecrease = 10f;
 
     void Start()
     {
@@ -50,7 +51,7 @@ public class WalkyTalkyScript : MonoBehaviour {
 
     public void IncreaseSound()
     {
-        _audioMixer.SetFloat("backgroundVolume", -5f);
-        _audioMixer.SetFloat("effectVolume", -5f);
+        _audioMixer.SetFloat("backgroundVolume", -_soundDecrease);
+        _audioMixer.SetFloat("effectVolume", -_soundDecrease);
     }
 }

@@ -5957,7 +5957,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 30.156002, y: -0.73600006, z: -7.1700006}
 --- !u!1001 &171049036
 Prefab:
@@ -17684,7 +17684,7 @@ Prefab:
     - target: {fileID: 224169913926516900, guid: 8cecd33161a04034c87e6d62fe53805f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224169913926516900, guid: 8cecd33161a04034c87e6d62fe53805f,
         type: 2}
@@ -24282,6 +24282,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 13f047cc255e4e94f9b807e681a1763a,
     type: 3}
   m_PrefabInternal: {fileID: 698552451}
+--- !u!1 &720657527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1578223478999698, guid: c09c7a742a56fc94bb6bb40d579037b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 720657528}
+  - component: {fileID: 720657529}
+  m_Layer: 0
+  m_Name: Collider (1)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &720657528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4008020930402436, guid: c09c7a742a56fc94bb6bb40d579037b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720657527}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 740024579}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &720657529
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 65013516454268690, guid: c09c7a742a56fc94bb6bb40d579037b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720657527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 243.20488, y: 145.86996, z: 501.5341}
+  m_Center: {x: -0.8565903, y: 46.211346, z: -65.24458}
 --- !u!1001 &720966054
 Prefab:
   m_ObjectHideFlags: 0
@@ -25136,6 +25180,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 69366b5e21b6f884abf6ebe59f881229,
     type: 3}
   m_PrefabInternal: {fileID: 1119834204}
+--- !u!4 &740024579 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4047814955933900, guid: c09c7a742a56fc94bb6bb40d579037b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1192850817}
 --- !u!1001 &740183211
 Prefab:
   m_ObjectHideFlags: 0
@@ -41037,6 +41086,26 @@ Prefab:
     - target: {fileID: 1743441203181362, guid: c09c7a742a56fc94bb6bb40d579037b3, type: 2}
       propertyPath: m_Name
       value: EnemyContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 65013516454268690, guid: c09c7a742a56fc94bb6bb40d579037b3,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 128.39189
+      objectReference: {fileID: 0}
+    - target: {fileID: 65013516454268690, guid: c09c7a742a56fc94bb6bb40d579037b3,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -56.4126
+      objectReference: {fileID: 0}
+    - target: {fileID: 65013516454268690, guid: c09c7a742a56fc94bb6bb40d579037b3,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 631.32446
+      objectReference: {fileID: 0}
+    - target: {fileID: 65013516454268690, guid: c09c7a742a56fc94bb6bb40d579037b3,
+        type: 2}
+      propertyPath: m_Center.z
+      value: -0.34985542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09c7a742a56fc94bb6bb40d579037b3, type: 2}
@@ -71818,7 +71887,7 @@ Transform:
   - {fileID: 412561622}
   - {fileID: 848142078}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2115929558
 Prefab:
