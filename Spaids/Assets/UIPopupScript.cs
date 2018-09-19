@@ -36,8 +36,20 @@ public class UIPopupScript : MonoBehaviour {
 
         if (other.tag == "Player")
         {
+            DisableSiblings();
             UIPopup.SetActive(true);
             open = true;
+        }
+    }
+
+    void DisableSiblings()
+    {
+        foreach(Transform sTransform in UIPopup.transform.parent.GetComponentsInChildren<Transform>())
+        {
+           if(sTransform != UIPopup.transform.parent.transform)
+            {
+                sTransform.gameObject.SetActive(false);
+            }
         }
     }
 }
