@@ -3,8 +3,8 @@ guid: e3039dbf8d94f724f9d1665a1569491d
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _MainTex: {fileID: 2800000, guid: b1e5d5b7c9f0dbf4dbdbed5d1b3dc0b6, type: 3}
-  - _WaveText: {fileID: 2800000, guid: b1e5d5b7c9f0dbf4dbdbed5d1b3dc0b6, type: 3}
+  - _MainTex: {fileID: 2800000, guid: 9c785a17d28e9e3489738fd6833a7eb9, type: 3}
+  - _WaveText: {fileID: 2800000, guid: 9c785a17d28e9e3489738fd6833a7eb9, type: 3}
   nonModifiableTextures: []
   userData: 
   assetBundleName: 
