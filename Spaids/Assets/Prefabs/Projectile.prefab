@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddfac77af3093f458a2a4f172a16d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeTillDestruction: 2
+  _timeTillDestruction: 1
 --- !u!114 &114553707163377410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageAmount: 5
+  _hitParticle: {fileID: 1617700753897852, guid: 2fc51477906b5d44b93e53cc25b2d012,
+    type: 2}
 --- !u!135 &135069909646531618
 SphereCollider:
   m_ObjectHideFlags: 1

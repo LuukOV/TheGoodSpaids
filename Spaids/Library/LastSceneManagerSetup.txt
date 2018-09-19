@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Marisas madness.unity
+=======
+- path: Assets/Scenes/Levelbuilding.unity
+>>>>>>> 6ad8f652f44ff04bcb0d7b72ab9b025e3585a923
   isLoaded: 1
   isActive: 1
