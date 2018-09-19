@@ -62,22 +62,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1128325181357532
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4320140226597506}
-  - component: {fileID: 65086306528972104}
-  m_Layer: 0
-  m_Name: Collider (1)
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1193474120011060
 GameObject:
   m_ObjectHideFlags: 1
@@ -616,7 +600,7 @@ Transform:
   m_Children:
   - {fileID: 4364007615992822}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4006067279070954
 Transform:
@@ -656,7 +640,7 @@ Transform:
   m_Children:
   - {fileID: 4212687476273652}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 42.405003, y: 156.5, z: -16.343}
 --- !u!4 &4047814955933900
 Transform:
@@ -678,7 +662,6 @@ Transform:
   - {fileID: 4836272287280564}
   - {fileID: 4008020930402436}
   - {fileID: 4120344558633650}
-  - {fileID: 4320140226597506}
   - {fileID: 4461073435101104}
   - {fileID: 4630438986061134}
   - {fileID: 4002887111761002}
@@ -784,7 +767,7 @@ Transform:
   m_Children:
   - {fileID: 4910154956434244}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 42.405, y: -156.5, z: -16.343}
 --- !u!4 &4193266927502216
 Transform:
@@ -825,19 +808,6 @@ Transform:
   m_Father: {fileID: 4498248302227904}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &4320140226597506
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1128325181357532}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4364007615992822
 Transform:
   m_ObjectHideFlags: 1
@@ -919,7 +889,7 @@ Transform:
   - {fileID: 4060237551802322}
   - {fileID: 4666083645370998}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4483573869262968
 Transform:
@@ -947,7 +917,7 @@ Transform:
   m_Children:
   - {fileID: 4249102551625908}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4605559446950520
 Transform:
@@ -974,7 +944,7 @@ Transform:
   m_Children:
   - {fileID: 4380375226607576}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4666083645370998
 Transform:
@@ -1066,7 +1036,7 @@ Transform:
   m_Children:
   - {fileID: 4844129252467064}
   m_Father: {fileID: 4047814955933900}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4980755727268634
 Transform:
@@ -1203,20 +1173,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 243.20488, y: 161.95213, z: 631.32446}
-  m_Center: {x: -0.8565903, y: -39.63245, z: -0.34985542}
---- !u!65 &65086306528972104
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1128325181357532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 243.20488, y: 145.86996, z: 501.5341}
-  m_Center: {x: -0.8565903, y: 46.211346, z: -65.24458}
+  m_Size: {x: 243.20488, y: 251.26385, z: 669.76794}
+  m_Center: {x: -0.8565903, y: 5.0233784, z: 18.871212}
 --- !u!108 &108190414368204140
 Light:
   m_ObjectHideFlags: 1
@@ -1452,9 +1410,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _killerPoints: 10
-  _dropPackage: 1
   _package: {fileID: 1406560885316972, guid: ae66dd0c9eb374d4fa654496bcbfc3bb, type: 2}
   _explosion: {fileID: 1725274129395512, guid: f07dd68a4510f2b44b195c3b859a5efe, type: 2}
+  _dropPackage: 1
 --- !u!114 &114364823000443930
 MonoBehaviour:
   m_ObjectHideFlags: 1

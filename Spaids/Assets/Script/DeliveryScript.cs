@@ -7,7 +7,6 @@ public class DeliveryScript : MonoBehaviour {
     InventoryScript _inventoryScript;
     AudioSource _audioSource;
     [SerializeField] GameObject _walkyTalky;
-    [SerializeField] PickupBarCounterScript _pickupBarCounterScript;
     [SerializeField] AudioClip _deliveryClip;
     [SerializeField] AudioClip _stealClip;
 
@@ -40,16 +39,12 @@ public class DeliveryScript : MonoBehaviour {
         if (collider.tag == "Bystander")
         {
             _bystanderTimer += Time.deltaTime;
-            _pickupBarCounterScript.gameObject.SetActive(true);
-            _pickupBarCounterScript.DecreaseBar();
             if (_bystanderTimer >= _bystanderTime)
             {
                 _inventoryScript.AddBox(new DeliveryBox(DeliveryBox.BOXTYPE.SOCIAL, _inventoryScript._deliveryPointManager));
                 _walkyTalky.GetComponent<WalkyTalkyScript>().Enable();
                 collider.gameObject.SetActive(false);
                 _bystanderTimer = 0f;
-                _pickupBarCounterScript.ResetBar();
-                _pickupBarCounterScript.gameObject.SetActive(false);
             }
         }
     }
@@ -58,8 +53,6 @@ public class DeliveryScript : MonoBehaviour {
     {
         if (collider.tag == "Bystander")
         {
-            _pickupBarCounterScript.ResetBar();
-            _pickupBarCounterScript.gameObject.SetActive(false);
             _bystanderTimer = 0f;
         }
     }
