@@ -9,19 +9,37 @@ public class GameManagerScript : MonoBehaviour {
 
     public static bool GAMERUNNING = true;
 
-    [SerializeField]
-    GameObject _endScreen;
-    [SerializeField]
-    GameObject _loseScreen;
-    [SerializeField]
-    GameObject _pauseScreen;
-    [SerializeField]
-    Image _walkyTalky;
+    [SerializeField] GameObject _endScreen;
+    [SerializeField] GameObject _loseScreen;
+    [SerializeField] GameObject _pauseScreen;
+    [SerializeField] Image _walkyTalky;
+    [SerializeField] Image _loseImage;
+    [SerializeField] Sprite _loseSprite;
+
+    [SerializeField] Text _achieverScore;
+    [SerializeField] Text _explorerScore;
+    [SerializeField] Text _socializerScore;
+    [SerializeField] Text _killerScore;
+    [SerializeField] Text _totalScore;
+
+    [SerializeField] GameObject _endPoint;
+
+    PointSystemScript _pointSystemScript;
+
+    void Start()
+    {
+        _pointSystemScript = GetComponent<PointSystemScript>();
+    }
 
     void Update()
     {
         if (!GAMERUNNING)
             return;
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            ActivateEndScreen();
+        }
 
         if (Input.GetButtonDown("Start"))
         {
@@ -64,12 +82,14 @@ public class GameManagerScript : MonoBehaviour {
 
     public void GoToMain()
     {
+        GAMERUNNING = true;
         ResumeGame();
         SceneManager.LoadScene(0);
     }
 
     public void ReloadGame()
     {
+        GAMERUNNING = true;
         ResumeGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -78,14 +98,31 @@ public class GameManagerScript : MonoBehaviour {
     {
         GAMERUNNING = false;
         PauseGame();
+        DisableHUD();
         _endScreen.SetActive(true);
+        _achieverScore.text = "" + _pointSystemScript.AchieverPoints;
+        _socializerScore.text = "" + _pointSystemScript.SocializerPoints;
+        _killerScore.text = "" + _pointSystemScript.KillerPoints;
+        _explorerScore.text = "" + _pointSystemScript.ExplorerPoints;
+        _totalScore.text = "" + _pointSystemScript.TotalPoints;
+        _endPoint.gameObject.SetActive(true);
     }
 
     public void ActivateLoseScreen()
     {
-        GAMERUNNING = false;
-        PauseGame();
-        _loseScreen.SetActive(true);
+        _loseImage.sprite = _loseSprite;
+        ActivateEndScreen();
+    }
+
+    public void DisableHUD()
+    {
+        foreach(Transform gObject in GetComponentsInChildren<Transform>())
+        {
+            if(gObject != transform)
+            {
+                gObject.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void ShowWalkyTalky()
