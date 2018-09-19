@@ -53,6 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LockYPositionScript.cs" />
+     <Compile Include="Assets\ObjectiveBoxCounterScript.cs" />
+     <Compile Include="Assets\PickupBarCounterScript.cs" />
      <Compile Include="Assets\PickupSwitchScript.cs" />
      <Compile Include="Assets\PointSystemScript.cs" />
      <Compile Include="Assets\Script\BulletScript.cs" />
@@ -76,6 +79,7 @@
      <Compile Include="Assets\Script\TailLightScript.cs" />
      <Compile Include="Assets\Script\UIManager.cs" />
      <Compile Include="Assets\Script\WalkyTalkyScript.cs" />
+     <Compile Include="Assets\SocialBoxCounterScript.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -106,6 +110,7 @@
      <Compile Include="Assets\Third Party\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />
      <Compile Include="Assets\Third Party\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
+     <Compile Include="Assets\UIPopupScript.cs" />
      <None Include="Assets\Shaders\BumpedPickupShader.shader" />
      <None Include="Assets\Third Party\Standard Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Third Party\Standard Assets\Vehicles\Aircraft\AircraftGuidelines.txt" />

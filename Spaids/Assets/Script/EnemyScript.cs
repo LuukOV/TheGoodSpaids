@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour {
 
     [SerializeField] private float _health = 100f;
     [SerializeField] private float _killerPoints = 10f;
+    [SerializeField] private bool _dropPackage = true;
     [SerializeField] private GameObject _package;
     [SerializeField] private GameObject _explosion;
 
@@ -23,7 +24,9 @@ public class EnemyScript : MonoBehaviour {
     {
         GameObject.FindWithTag("Canvas").GetComponent<PointSystemScript>().KillerPoints += _killerPoints;
         Instantiate(_explosion, transform.position, Quaternion.FromToRotation(Vector3.forward, Vector3.forward));
-        Instantiate(_package, transform.position, Quaternion.FromToRotation(Vector3.forward, Vector3.forward));
+        if (_dropPackage) {
+            Instantiate(_package, transform.position, Quaternion.FromToRotation(Vector3.forward, Vector3.forward));
+        }
         Destroy(gameObject);
     }
 }

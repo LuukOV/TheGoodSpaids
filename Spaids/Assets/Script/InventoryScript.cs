@@ -35,9 +35,10 @@ public class InventoryScript : MonoBehaviour {
         if (Time.timeScale <= 0)
             return; // don't update when time is paused
 
+        /*
         _UIManagerScript.SetObjectiveCount(_objectiveBoxes.Count);
         _UIManagerScript.SetSocialCount(_socialBoxes.Count);
-        _UIManagerScript.SetKillerCount(_killerBoxes.Count);
+        _UIManagerScript.SetKillerCount(_killerBoxes.Count);*/
 	}
 
     int collectedBoxes()
@@ -61,12 +62,14 @@ public class InventoryScript : MonoBehaviour {
                 {
                     _pointSystem.TotalBoxesCollected++;
                     _killerBoxes.Add(deliveryBox);
+                    _UIManagerScript._socialBoxCounterScript.AddBox();
                     break;
                 }
             case DeliveryBox.BOXTYPE.SOCIAL:
                 {
                     _pointSystem.TotalBoxesCollected++;
                     _socialBoxes.Add(deliveryBox);
+                    _UIManagerScript._socialBoxCounterScript.AddBox();
                     break;
                 }
         }
@@ -78,8 +81,10 @@ public class InventoryScript : MonoBehaviour {
         {
             if (ValidatePoint(_objectiveBoxes[i], deliveryPoint))
             {
+                _pointSystem.AchieverPoints += 10f;
                 _objectiveBoxes.Remove(_objectiveBoxes[i]);
                 _UIManagerScript.IncreaseTime(10f);
+                _UIManagerScript._objectiveBoxCounterScript.RemoveBox();
 
                 if (_objectiveBoxes.Count < 1) // finish game
                 {
@@ -94,6 +99,7 @@ public class InventoryScript : MonoBehaviour {
             {
                 _pointSystem.SocializerPoints += 10f;
                 _killerBoxes.Remove(_killerBoxes[i]);
+                _UIManagerScript._socialBoxCounterScript.RemoveBox();
             }
         }
 
@@ -103,6 +109,7 @@ public class InventoryScript : MonoBehaviour {
             {
                 _pointSystem.SocializerPoints += 10f;
                 _socialBoxes.Remove(_socialBoxes[i]);
+                _UIManagerScript._socialBoxCounterScript.RemoveBox();
             }
         }
     }
