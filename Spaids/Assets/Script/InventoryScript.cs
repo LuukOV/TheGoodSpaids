@@ -7,7 +7,7 @@ public class InventoryScript : MonoBehaviour {
     [SerializeField]
     private GameObject UIManager;
     private UIManager _UIManagerScript;
-    private PointSystemScript _pointSystem;
+    public PointSystemScript _pointSystem;
 
     private List<DeliveryBox> _objectiveBoxes = new List<DeliveryBox>();
     private List<DeliveryBox> _socialBoxes = new List<DeliveryBox>();

@@ -10,6 +10,7 @@ public class DeliveryScript : MonoBehaviour {
     [SerializeField] PickupBarCounterScript _pickupBarCounterScript;
     [SerializeField] AudioClip _deliveryClip;
     [SerializeField] AudioClip _stealClip;
+    [SerializeField] GameObject _explorerPopup;
 
     float _bystanderTimer = 0;
     [SerializeField] float _bystanderTime = 3f;
@@ -33,6 +34,18 @@ public class DeliveryScript : MonoBehaviour {
             _inventoryScript.AddBox(new DeliveryBox(DeliveryBox.BOXTYPE.KILLER, _inventoryScript._deliveryPointManager));
             Destroy(collider.gameObject);
         }
+        if(collider.tag == "ExplorerArea")
+        {
+            Destroy(collider.gameObject);
+            _inventoryScript._pointSystem.ExplorerPoints += 10f;
+            _explorerPopup.SetActive(true);
+            Invoke("DisableExplorerPopup", 3f);
+        }
+    }
+
+    void DisableExplorerPopup()
+    {
+        _explorerPopup.SetActive(false);
     }
 
     void OnTriggerStay(Collider collider)
