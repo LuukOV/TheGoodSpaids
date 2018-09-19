@@ -6,7 +6,7 @@ public class UIPopupScript : MonoBehaviour {
 
     [SerializeField] GameObject UIPopup;
     bool open = false;
-    float _timeOpen = 10f;
+    [SerializeField] float _timeOpen = 10f;
     float _timer = 0f;
 
 	// Use this for initialization
