@@ -35,6 +35,7 @@ public class ShootingScript : MonoBehaviour {
 	void Update () {
         if (Time.timeScale <= 0)
             return; // don't update when time is paused
+
         CheckAudio();
 
 

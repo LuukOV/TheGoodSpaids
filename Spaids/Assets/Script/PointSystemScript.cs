@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PointSystemScript : MonoBehaviour {
-
-    private UIManager _uiManager;
+    [HideInInspector]
+    public UIManager _uiManager;
 
     public float AchieverPoints = 0f;
     public float ExplorerPoints = 0f;
@@ -12,10 +12,7 @@ public class PointSystemScript : MonoBehaviour {
     public float KillerPoints = 0f;
     public int TotalBoxesCollected = 0;
 
-    public float AddAchieverPoints
-    {
-        get { return (10 + TotalBoxesCollected) * _uiManager.GameTime; }
-    }
+
 
     public float TotalPoints
     {
@@ -30,5 +27,10 @@ public class PointSystemScript : MonoBehaviour {
     void Update()
     {
         _uiManager.ScoreCount.text = "" + (int)TotalPoints;
+    }
+
+    public void AddAchieverPoints()
+    {
+        AchieverPoints += TotalBoxesCollected *_uiManager.GameTime * (MainMenuManager.HARDMODE ? 1.5f : 1f);
     }
 }

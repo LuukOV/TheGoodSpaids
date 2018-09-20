@@ -14,6 +14,14 @@ public class UIManager : MonoBehaviour {
     private bool gameStarted = false;
     private bool gameEnded = false;
 	
+    void Start()
+    {
+        if (MainMenuManager.HARDMODE)
+        {
+            GameTime -= 25f;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
         if (Time.timeScale <= 0 || !gameStarted)

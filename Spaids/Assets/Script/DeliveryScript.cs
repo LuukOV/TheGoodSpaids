@@ -30,6 +30,10 @@ public class DeliveryScript : MonoBehaviour {
         }
         if(collider.tag == "EnemyPackage")
         {
+            if(_inventoryScript.SocializerBoxes >= 10)
+            {
+                return;
+            }
             _audioSource.PlayOneShot(_stealClip);
             _inventoryScript.AddBox(new DeliveryBox(DeliveryBox.BOXTYPE.KILLER, _inventoryScript._deliveryPointManager));
             Destroy(collider.gameObject);
@@ -52,6 +56,11 @@ public class DeliveryScript : MonoBehaviour {
     {
         if (collider.tag == "Bystander")
         {
+            if (_inventoryScript.SocializerBoxes >= 10)
+            {
+                return;
+            }
+
             _bystanderTimer += Time.deltaTime;
             _pickupBarCounterScript.gameObject.SetActive(true);
             _pickupBarCounterScript.DecreaseBar();

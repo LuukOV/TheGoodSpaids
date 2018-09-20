@@ -15,6 +15,9 @@ public class TailLightScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.timeScale <= 0)
+            return;
+
         if (Input.GetAxis("LT_TRIGGER") != 0) // Left Trigger
         {
             EnableTailLights();

@@ -8,14 +8,14 @@ public class DeliveryPointManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (_deliveryPoints.Count <= 0)
-        {
-            checkPoints();
-        }
+
 	}
 
-    void checkPoints()
+    public void checkPoints()
     {
+        if (_deliveryPoints.Count > 0)
+            return;
+
         foreach (Transform gObject in GetComponentInChildren<Transform>())
         {
             _deliveryPoints.Add(gObject.gameObject);
@@ -33,7 +33,7 @@ public class DeliveryPointManager : MonoBehaviour {
         if (_deliveryPoints.Count <= 0)
             Debug.Log("No Delivery points?");
 
-        for (int i = _deliveryPoints.Count - 1; i > -1; i--)
+        while (true)
         {
             int random = Random.Range(0, _deliveryPoints.Count);
             if (!_deliveryPoints[random].activeSelf)
@@ -48,9 +48,8 @@ public class DeliveryPointManager : MonoBehaviour {
                     _deliveryPoints[random].GetComponent<PickupSwitchScript>().EnableTypeSocial();
                 }
                 return _deliveryPoints[random];
+
             }
         }
-
-        return new GameObject();
     }
 }

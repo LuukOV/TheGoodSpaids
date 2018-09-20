@@ -26,7 +26,7 @@ public class PointerManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _deliveryPointManager = DeliveryPointManagerObject.GetComponent<DeliveryPointManager>();
-        Invoke("fillList", 0.0001f);
+        //Invoke("fillList", 0.0001f);
 	}
 	
 	// Update is called once per frame
@@ -61,7 +61,7 @@ public class PointerManager : MonoBehaviour {
         }
 	}
 
-    void fillList()
+    public void FillList()
     {
         foreach (GameObject obj in _deliveryPointManager._deliveryPoints)
         {

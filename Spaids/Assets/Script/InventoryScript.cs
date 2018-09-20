@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject UIManager;
+    [SerializeField] private GameObject UIManager;
+    [SerializeField] private PointerManager _pointerManager;
     private UIManager _UIManagerScript;
     public PointSystemScript _pointSystem;
 
@@ -14,6 +14,11 @@ public class InventoryScript : MonoBehaviour {
     private List<DeliveryBox> _killerBoxes = new List<DeliveryBox>();
 
     public GameObject _deliveryPointManager;
+
+    public int SocializerBoxes
+    {
+        get { return _socialBoxes.Count + _killerBoxes.Count; }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +29,12 @@ public class InventoryScript : MonoBehaviour {
 	
     void CreateObjective()
     {
+        _deliveryPointManager.GetComponent<DeliveryPointManager>().checkPoints();
         for (int i = 0; i < 10; i++)
         {
             AddBox(new DeliveryBox(DeliveryBox.BOXTYPE.MAIN, _deliveryPointManager));
         }
+        _pointerManager.FillList();
     }
 
 	// Update is called once per frame
@@ -83,7 +90,7 @@ public class InventoryScript : MonoBehaviour {
             {
                 _pointSystem.AchieverPoints += 10f;
                 _objectiveBoxes.Remove(_objectiveBoxes[i]);
-                _UIManagerScript.IncreaseTime(10f);
+                _UIManagerScript.IncreaseTime(MainMenuManager.HARDMODE ? 10f / 2 : 10f);
                 _UIManagerScript._objectiveBoxCounterScript.RemoveBox();
 
                 if (_objectiveBoxes.Count < 1) // finish game

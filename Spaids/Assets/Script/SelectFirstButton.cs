@@ -20,7 +20,7 @@ public class SelectFirstButton : MonoBehaviour {
 
     void Update()
     {
-        if(Input.GetAxis("Vertical") != 0 && EventSystem.current.currentSelectedGameObject == null)
+        if(((Input.GetAxis("Vertical") != 0 || Input.GetButton("Vertical")) || (Input.GetAxis("Horizontal") != 0 || Input.GetButton("Horizontal"))) && EventSystem.current.currentSelectedGameObject == null)
         {
             SelectButton();
         }
@@ -28,10 +28,13 @@ public class SelectFirstButton : MonoBehaviour {
 
     public void SelectButton()
     {
+        /*
         if (Input.GetJoystickNames().Length > 0)
-        {
+        {*/
+
+        Debug.Log("hmm");
             _button = transform.GetChild(0).gameObject;
             EventSystem.current.SetSelectedGameObject(_button, null);
-        }
+        //}
     }
 }
