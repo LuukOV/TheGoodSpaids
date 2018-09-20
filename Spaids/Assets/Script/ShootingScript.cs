@@ -7,6 +7,7 @@ public class ShootingScript : MonoBehaviour {
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _shootingPoint;
 
+    [SerializeField] private float _globalAmplifier = 10f;
     [SerializeField] private float _bulletSpeed = 1000f;
     [SerializeField] private float _loadSpeed = 0.01f;
     [SerializeField] private float _maxIncreasedLoadSpeed = 2f;
@@ -40,8 +41,8 @@ public class ShootingScript : MonoBehaviour {
         if (Input.GetButton("Fire1"))
         {
 
-            _rotationSpeed += _increasedLoadSpeed;
-            _increasedLoadSpeed += _loadSpeed;
+            _rotationSpeed += _increasedLoadSpeed * Time.deltaTime * _globalAmplifier;
+            _increasedLoadSpeed += _loadSpeed * Time.deltaTime * _globalAmplifier;
 
             if(_rotationSpeed >= _maxRotationSpeed)
             {
@@ -53,8 +54,8 @@ public class ShootingScript : MonoBehaviour {
         }
         else
         {
-            _increasedLoadSpeed -= _loadSpeed * 2;
-            _rotationSpeed -= _loadSpeed * 2;
+            _increasedLoadSpeed -= (_loadSpeed * 2) * Time.deltaTime * _globalAmplifier;
+            _rotationSpeed -= (_loadSpeed * 2) * Time.deltaTime * _globalAmplifier;
         }
 
 

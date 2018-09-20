@@ -6,7 +6,8 @@ public class UIPopupScript : MonoBehaviour {
 
     [SerializeField] GameObject UIPopup;
     bool open = false;
-    [SerializeField] float _timeOpen = 10f;
+    [SerializeField]
+    float _timeOpen = 10f;
     float _timer = 0f;
 
 	// Use this for initialization
@@ -46,11 +47,7 @@ public class UIPopupScript : MonoBehaviour {
     {
         foreach(Transform sTransform in UIPopup.transform.parent.GetComponentsInChildren<Transform>())
         {
-<<<<<<< HEAD:Spaids/Assets/Script/UIPopupScript.cs
             if(sTransform != UIPopup.transform.parent.transform)
-=======
-           if(sTransform != UIPopup.transform.parent.transform)
->>>>>>> 10653ad98ff41679d1dfeec257ac297e09d0d8ef:Spaids/Assets/UIPopupScript.cs
             {
                 sTransform.gameObject.SetActive(false);
             }

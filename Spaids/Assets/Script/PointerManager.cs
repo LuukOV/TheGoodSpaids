@@ -12,6 +12,9 @@ public class PointerManager : MonoBehaviour {
     GameObject _player;
 
     [SerializeField]
+    GameObject _compassSpawn;
+
+    [SerializeField]
     float _pointerDistanceAmp = 10;
 
     [SerializeField] Sprite _objectiveImage;
@@ -62,7 +65,7 @@ public class PointerManager : MonoBehaviour {
     {
         foreach (GameObject obj in _deliveryPointManager._deliveryPoints)
         {
-            _pointers.Add(Instantiate(_pointer, transform.position, Quaternion.FromToRotation(transform.forward, transform.forward), transform));
+            _pointers.Add(Instantiate(_pointer, _compassSpawn.transform.position, Quaternion.FromToRotation(transform.forward, transform.forward), transform));
         }
     }
 
